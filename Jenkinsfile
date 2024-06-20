@@ -26,11 +26,9 @@ pipeline {
                     def credentialsId = 'Docker_hub_credentials'  // Replace with actual credentials ID
 
                     docker.withRegistry(registryUrl, credentialsId) {
-                        def customImage = docker.image(imageName)
-                customImage.push()
-                    }
+                    dockerImage.push()
                 }
             }
         }
     }
-
+}
