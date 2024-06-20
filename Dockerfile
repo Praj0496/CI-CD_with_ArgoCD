@@ -4,8 +4,7 @@ FROM node:14
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy your HTML and JavaScript files into the container
-COPY index.html .
+# Copy your JavaScript files into the container
 COPY app.js .
 
 # Install a simple HTTP server (you can replace this with any other server)
