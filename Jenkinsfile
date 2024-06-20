@@ -12,8 +12,7 @@ pipeline {
             steps {
                 script {
                     def imageName = 'my-calculator-app:latest'
-
-                    def dockerFile = 'Dockerfile'
+                    def dockerFile = 'Dockerfile' 
 
                     docker.build(imageName, "-f ${dockerFile} .")
                 }
