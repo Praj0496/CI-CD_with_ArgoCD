@@ -6,8 +6,6 @@ WORKDIR /app
 
 # Copy your JavaScript files into the container
 COPY app.js /app/app.js
-# Add any other necessary files (e.g., HTML, CSS)
-COPY css.html /app/index.html
 
 # Specify the command to run your Node.js application within the container
 CMD ["node", "app.js"]
