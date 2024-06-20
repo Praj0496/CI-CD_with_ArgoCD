@@ -11,23 +11,37 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def imageName = 'my-calculator-app:latest'
-                    def dockerFile = 'Dockerfile'
+                    def imageName = 'my-calculator-app'
+                    def dockerTag = "${env.BUILD_NUMBER}"
 
-                    dockerImage = docker.build(imageName, "-f ${dockerFile} .")
+                    sh "docker build -t ${imageName}:${dockerTag} ."
                 }
             }
         }
 
-        stage('Push to Repository') {
+        stage('Push to Docker Hub') {
             steps {
                 script {
-                    def registryUrl = 'https://registry.hub.docker.com'
-                    def credentialsId = 'Docker_hub_credentials'  // Replace with actual credentials ID
+                    def dockerHubRepo = 'praj0404/my-calculator-app'
+                    def dockerTag = "${env.BUILD_NUMBER}"
 
-                    docker.withRegistry(registryUrl, credentialsId) {
-                        dockerImage.push()
-                    }
+                    sh "docker login -u praj0404 -p praj0505doc"
+                    sh "docker tag ${imageName}:${dockerTag} ${dockerHubRepo}:${dockerTag}"
+                    sh "docker push ${dockerHubRepo}:${dockerTag}"
+                }
+            }
+        }
+
+        stage('Push to Git Repository') {
+            steps {
+                script {
+                    def gitRepoUrl = 'https://github.com/Praj0496/CI-CD_with_ArgoCD.git'
+
+                    sh "git config user.email 'jenkins@example.com'"
+                    sh "git config user.name 'Jenkins'"
+                    sh "git add ."
+                    sh "git commit -m 'Add Docker image'"
+                    sh "git push ${gitRepoUrl}"
                 }
             }
         }
