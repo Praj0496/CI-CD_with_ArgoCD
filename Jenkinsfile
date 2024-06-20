@@ -23,11 +23,13 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    def dockerHubRepo = 'praj0404/my-calculator-app'
-                    def dockerTag = "${env.BUILD_NUMBER}"
-                    sh "docker login -u praj0404 -p praj0505doc"
-                    sh "docker tag ${imageName}:${dockerTag} ${dockerHubRepo}:${dockerTag}"
-                    sh "docker push ${dockerHubRepo}:${dockerTag}"
+                    //def dockerHubRepo = 'praj0404/my-calculator-app'
+                    //def dockerTag = "${env.BUILD_NUMBER}"
+                    //sh "docker login -u praj0404 -p praj0505doc"
+                    //sh "docker tag ${imageName}:${dockerTag} ${dockerHubRepo}:${dockerTag}"
+                    //sh "docker push ${dockerHubRepo}:${dockerTag}"
+                    docker.withRegistry('https://registry.hub.docker.com', 'Docker_hub_credentials')
+                    dockerImage.push()
                     }
                 }
             }
