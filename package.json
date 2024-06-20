@@ -1,16 +1,11 @@
 {
   "name": "ci-cd_with_argocd",
   "version": "1.0.0",
-  "type": "module",
   "description": "CI/CD pipeline with ARgo CD deploy to K8S",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "mathjs": "^13.0.0"
-  }
+  "license": "ISC"
 }
