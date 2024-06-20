@@ -14,7 +14,7 @@ pipeline {
                     def imageName = 'my-calculator-app'
                     def dockerTag = "${env.BUILD_NUMBER}"
 
-                    sh "docker build -t ${imageName}:${dockerTag} ."
+                    dockerImage = docker.build(imageName, "-f ${dockerTag} .")
                 }
             }
         }
@@ -26,8 +26,11 @@ pipeline {
                     def dockerTag = "${env.BUILD_NUMBER}"
 
                     sh "docker login -u praj0404 -p praj0505doc"
-                    sh "docker tag ${imageName}:${dockerTag} ${dockerHubRepo}:${dockerTag}"
-                    sh "docker push ${dockerHubRepo}:${dockerTag}"
+                    //sh "docker tag ${imageName}:${dockerTag} ${dockerHubRepo}:${dockerTag}"
+                    //sh "docker push ${dockerHubRepo}:${dockerTag}"
+                    docker.withRegistry(registryUrl, credentialsId) {
+                        dockerImage.push()
+                    }
                 }
             }
         }
