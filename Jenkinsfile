@@ -31,8 +31,6 @@ pipeline {
                     }
                 }
             }
-        }
-
         stage('Push to Git Repository') {
             steps {
                 script {
@@ -47,3 +45,4 @@ pipeline {
             }
         }
     }
+}
