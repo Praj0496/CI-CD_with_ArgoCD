@@ -14,7 +14,7 @@ pipeline {
                     def imageName = 'my-calculator-app:latest'
                     def dockerFile = 'Dockerfile' 
 
-                    docker.build(imageName, "-f ${dockerFile} .")
+                    dockerImage = docker.build(imageName, "-f ${dockerFile} .")
                 }
             }
         }
@@ -25,10 +25,8 @@ pipeline {
                     def registryUrl = 'https://registry.hub.docker.com'
                     def credentialsId = 'Docker_hub_credentials'  // Replace with actual credentials ID
 
-                    docker.withRegistry(registryUrl, credentialsId) {
-                        def customImage = docker.image(imageName)
-                customImage.push()
-                    }
+                    docker.withRegistry(registryUrl, credentialsId) 
+                    dockerImage.push()
                 }
             }
         }
