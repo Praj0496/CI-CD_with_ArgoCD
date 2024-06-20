@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     def imageName = 'my-calculator-app:latest'
-                    def dockerFile = 'Dockerfile' 
+                    def dockerFile = 'Dockerfile'
 
                     dockerImage = docker.build(imageName, "-f ${dockerFile} .")
                 }
@@ -25,11 +25,11 @@ pipeline {
                     def registryUrl = 'https://registry.hub.docker.com'
                     def credentialsId = 'Docker_hub_credentials'  // Replace with actual credentials ID
 
-                    docker.withRegistry(registryUrl, credentialsId) 
-                    dockerImage.push()
+                    docker.withRegistry(registryUrl, credentialsId) {
+                        dockerImage.push()
+                    }
                 }
             }
         }
     }
 }
-
