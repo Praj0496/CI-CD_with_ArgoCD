@@ -22,7 +22,7 @@ pipeline {
         stage('Push to Repository') {
             steps {
                 script {
-                    def registryUrl = 'https://hub.docker.com/repositories/praj0404'
+                    def registryUrl = 'https://hub.docker.com'
                     def credentialsId = 'Docker_hub_credentials'  //credential stored in Jenkins
 
                     docker.withRegistry(registryUrl, credentialsId) {
