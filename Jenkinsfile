@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', credentialsId: 'git_key', url: 'https://github.com/Praj0496/CI-CD_with_ArgoCD.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    def imageName = 'my-calculator-app:latest'
+                    def dockerFile = 'Dockerfile' 
+
+                    docker.build(imageName, "-f ${dockerFile} .")
+                }
+            }
+        }
+
+        stage('Push to Repository') {
+            steps {
+                script {
+                    def registryUrl = 'https://hub.docker.com/repositories/praj0404'
+                    def credentialsId = 'Docker_hub_credentials'  //credential stored in Jenkins
+
+                    docker.withRegistry(registryUrl, credentialsId) {
+                        docker.image(imageName).push()
+                    }
+                }
+            }
+        }
+    }
+}
