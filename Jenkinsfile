@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     def imageName = 'my-calculator-app:latest'
-                    def dockerFile = 'Dockerfile' 
+                    def dockerFile = 'Dockerfile'
 
                     docker.build(imageName, "-f ${dockerFile} .")
                 }
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     def registryUrl = 'https://hub.docker.com'
-                    def credentialsId = 'Docker_hub_credentials'  //credential stored in Jenkins
+                    def credentialsId = 'Docker_hub_credentials'  // Replace with actual credentials ID
 
                     docker.withRegistry(registryUrl, credentialsId) {
                         docker.image(imageName).push()
