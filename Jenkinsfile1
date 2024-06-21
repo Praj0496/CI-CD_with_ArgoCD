@@ -18,7 +18,6 @@ pipeline {
                 }
             }
         }
-
         stage('Push to Repository') {
             steps {
                 script {
@@ -30,6 +29,19 @@ pipeline {
                     }
                 }
             }
+        stage('Push to Git Repository') {
+            steps {
+                script {
+                    def gitRepoUrl = 'https://github.com/Praj0496/CI-CD_with_ArgoCD.git'
+
+                    sh "git config user.email 'jenkins@example.com'"
+                    sh "git config user.name 'Jenkins'"
+                    sh "git add ."
+                    sh "git commit -m 'Add Docker image'"
+                    sh "git push ${gitRepoUrl}"
+                }
+                }
+            }  
         }
     }
 }
