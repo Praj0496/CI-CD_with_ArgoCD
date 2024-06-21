@@ -56,7 +56,7 @@ pipeline {
                         git remote -v
                         git push https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/Praj0496/Argo_project_K8S_manifest.git HEAD:main
                         '''                        
-                    }
+                    } 
                 }
             }
         }
