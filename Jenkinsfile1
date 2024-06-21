@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def imageName = 'my-calculator-app:latest'
+                    def imageName = 'app:latest'
                     def dockerFile = 'Dockerfile'
 
                     dockerImage = docker.build(imageName, "-f ${dockerFile} .")

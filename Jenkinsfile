@@ -1,50 +1,15 @@
-pipeline {
+pipeline{
     agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', credentialsId: 'git_key', url: 'https://github.com/Praj0496/CI-CD_with_ArgoCD.git'
+    stages{
+        stage('Maven Install'){
+            agent {         
+                docker {          
+                        image 'maven:3.5.0'         
+                        }       
+                    }       
+    steps {
+        sh 'mvn clean install'
             }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    def imageName = 'my-calculator-app'
-                    //def dockerTag = "${env.BUILD_NUMBER}"
-                    def dockerFile = 'Dockerfile'
-
-                    dockerImage = docker.build(imageName, "-f ${dockerFile} .")
-                }
-            }
-        }
-
-        stage('Push to Docker Hub') {
-            steps {
-                script {
-                    //def dockerHubRepo = 'praj0404/my-calculator-app'
-                    //def dockerTag = "${env.BUILD_NUMBER}"
-                    //sh "docker login -u praj0404 -p praj0505doc"
-                    //sh "docker tag ${imageName}:${dockerTag} ${dockerHubRepo}:${dockerTag}"
-                    //sh "docker push ${dockerHubRepo}:${dockerTag}"
-                    docker.withRegistry('https://registry.hub.docker.com', 'Docker_hub_credentials')
-                    dockerImage.push()
-                    }
-                }
-            }
-        stage('Push to Git Repository') {
-            steps {
-                script {
-                    def gitRepoUrl = 'https://github.com/Praj0496/CI-CD_with_ArgoCD.git'
-
-                    sh "git config user.email 'jenkins@example.com'"
-                    sh "git config user.name 'Jenkins'"
-                    sh "git add ."
-                    sh "git commit -m 'Add Docker image'"
-                    sh "git push ${gitRepoUrl}"
-                }
-            }
-        }
+        }  
     }
 }
