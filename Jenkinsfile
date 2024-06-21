@@ -47,7 +47,6 @@ pipeline {
                 script{
                     withCredentials([usernamePassword(credentialsId: 'git_key', passwordVariable: 'git_keyPassword', usernameVariable: 'git_keyUsername')]) {
                         sh '''
-                        ls -l  # List files in the current directory (for debugging)
                         cat Deployment.yaml
                         sed -i '' "s/1/${BUILD_NUMBER}/g" Deployment.yaml
                         cat Deployment.yaml
