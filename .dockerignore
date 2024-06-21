@@ -1,0 +1,12 @@
+# Ignore the entire logs/ directory
+logs/
+
+# Ignore all Markdown files
+*.md
+
+# Ignore the .cache folder
+.cache/
+
+# Ignore the files
+Jenkinsfile1
+README.md
