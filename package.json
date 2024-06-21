@@ -1,11 +1,11 @@
 {
-  "name": "ci-cd_with_argocd",
+  "name": "app",
   "version": "1.0.0",
-  "description": "CI/CD pipeline with ARgo CD deploy to K8S",
+  "description": "Web application deployed on K8S container",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
-  "author": "",
-  "license": "ISC"
+  "dependencies": {}
 }
+

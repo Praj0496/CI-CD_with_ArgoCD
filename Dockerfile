@@ -1,17 +1,20 @@
-# Use an official Node.js image as the base
-FROM node:14
+# Use an official Node runtime as the base image
+FROM node:16-alpine
 
-# Set the working directory inside the container
-WORKDIR /usr/src/app
+# Set the working directory in the container to /app
+WORKDIR /app
 
-# Copy your JavaScript files into the container
-COPY app.js .
+# Copy package.json and package-lock.json into the working directory
+COPY package.json ./
 
-# Install a simple HTTP server (you can replace this with any other server)
-RUN npm install -g http-server
+# Install any needed packages specified in package.json
+RUN npm install
 
-# Expose port 80 (optional, if your app runs on a different port, adjust accordingly)
+# Bundle app source inside Docker image 
+COPY . .
+
+# Port 80 made available to the world outside 
 EXPOSE 80
 
-# Define the command to start your app
-CMD ["http-server", "-p", "80"]
+# Command to run your app using CMD which defines your runtime
+CMD [ "node", "app.js" ]
