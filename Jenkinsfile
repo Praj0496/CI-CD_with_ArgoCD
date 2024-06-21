@@ -4,6 +4,7 @@ pipeline {
     
     environment {
         IMAGE_TAG = "${BUILD_NUMBER}"
+        GIT_CREDENTIALS = credentials('git_key')
     }
     
     stages {
@@ -53,7 +54,7 @@ pipeline {
                         git add Deployment.yaml
                         git commit -m 'Updated the deployment yaml file | Jenkins Pipeline'
                         git remote -v
-                        git push https://github.com/Praj0496/Argo_project_K8S_manifest.git HEAD:main
+                        git push https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/Praj0496/Argo_project_K8S_manifest.git HEAD:main
                         '''                        
                     }
                 }
