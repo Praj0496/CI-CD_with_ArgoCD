@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-app
+spec:
+  containers:
+  - name: app
+    image: praj0404/argo_cd:1.0
+    ports:
+    - containerPort: 80
