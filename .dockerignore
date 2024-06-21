@@ -10,3 +10,4 @@ logs/
 # Ignore the files
 Jenkinsfile1
 README.md
+Docker_image_create_output.txt
