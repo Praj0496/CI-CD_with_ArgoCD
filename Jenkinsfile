@@ -49,7 +49,7 @@ pipeline {
                         sh '''
                         ls -l  # List files in the current directory (for debugging)
                         cat Deployment.yaml
-                        sed -i '' "s/1.0/${BUILD_NUMBER}/g" Deployment.yaml
+                        sed -i '' "s/1/${BUILD_NUMBER}/g" Deployment.yaml
                         cat Deployment.yaml
                         git add Deployment.yaml
                         git commit -m 'Updated the deployment yaml file | Jenkins Pipeline'
