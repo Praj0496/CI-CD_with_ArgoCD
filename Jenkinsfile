@@ -49,7 +49,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'git_key', passwordVariable: 'git_keyPassword', usernameVariable: 'git_keyUsername')]) {
                         sh '''
                         cat Deployment.yaml
-                        sed -i "s/3/${BUILD_NUMBER}/g" Deployment.yaml
+                        sed -i "s|\(praj0404/argo_cd:\s*${IMAGE_NAME};\).*|{BUILD_NUMBER}|" $Deployment.yaml
                         cat Deployment.yaml
                         git add Deployment.yaml
                         git commit -m 'Updated the deployment yaml file | Jenkins Pipeline'
