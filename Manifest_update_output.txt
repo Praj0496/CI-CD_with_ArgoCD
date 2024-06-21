@@ -1,0 +1,267 @@
+Started by GitHub push by Praj0496
+Obtained Jenkinsfile from git https://github.com/Praj0496/CI-CD_with_ArgoCD.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Argo Project CI pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential git_key
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/Argo Project CI pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Praj0496/CI-CD_with_ArgoCD.git # timeout=10
+Fetching upstream changes from https://github.com/Praj0496/CI-CD_with_ArgoCD.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_ASKPASS to set credentials git_key
+ > git fetch --tags --force --progress -- https://github.com/Praj0496/CI-CD_with_ArgoCD.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 749500cfac28d437f45d218fa7297cc9dd4a2476 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 749500cfac28d437f45d218fa7297cc9dd4a2476 # timeout=10
+Commit message: "Jenkins file updated"
+ > git rev-list --no-walk 56a75f33ecf7c58b98586aaf43859a9bf0d43724 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $GIT_CREDENTIALS or $GIT_CREDENTIALS_PSW
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] git
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential git_key
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/Argo Project CI pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Praj0496/CI-CD_with_ArgoCD.git # timeout=10
+Fetching upstream changes from https://github.com/Praj0496/CI-CD_with_ArgoCD.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_ASKPASS to set credentials git_key
+ > git fetch --tags --force --progress -- https://github.com/Praj0496/CI-CD_with_ArgoCD.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 749500cfac28d437f45d218fa7297cc9dd4a2476 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 749500cfac28d437f45d218fa7297cc9dd4a2476 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D main # timeout=10
+ > git checkout -b main 749500cfac28d437f45d218fa7297cc9dd4a2476 # timeout=10
+Commit message: "Jenkins file updated"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ echo Buid Docker Image
+Buid Docker Image
++ docker build -t praj0404/argo_cd:17 .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 599B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:16-alpine
+#2 DONE 0.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 238B done
+#3 DONE 0.0s
+
+#4 [1/6] FROM docker.io/library/node:16-alpine@sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 2.56MB 0.1s done
+#5 DONE 0.1s
+
+#6 [2/6] WORKDIR /app
+#6 CACHED
+
+#7 [3/6] COPY app.js .
+#7 DONE 0.1s
+
+#8 [4/6] COPY package.json ./
+#8 DONE 0.0s
+
+#9 [5/6] RUN npm install
+#9 1.041 
+#9 1.041 up to date, audited 1 package in 246ms
+#9 1.043 
+#9 1.043 found 0 vulnerabilities
+#9 DONE 1.1s
+
+#10 [6/6] COPY . .
+#10 DONE 0.4s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 0.2s done
+#11 writing image sha256:cb44420c684ce7580102e6bbe0759fceec9bed3709407cd403151572ee9248e1
+#11 writing image sha256:cb44420c684ce7580102e6bbe0759fceec9bed3709407cd403151572ee9248e1 done
+#11 naming to docker.io/praj0404/argo_cd:17 done
+#11 DONE 0.2s
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push the artifacts)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ echo Push to Repo
+Push to Repo
++ docker push praj0404/argo_cd:17
+The push refers to repository [docker.io/praj0404/argo_cd]
+8cebb17ca5c0: Preparing
+305d05fb2cf7: Preparing
+ab42b13d9b6b: Preparing
+3ab7853c31b3: Preparing
+be14f8339d83: Preparing
+365ccd918307: Preparing
+1bba629c69e9: Preparing
+139c1270acf1: Preparing
+4693057ce236: Preparing
+365ccd918307: Waiting
+1bba629c69e9: Waiting
+139c1270acf1: Waiting
+4693057ce236: Waiting
+be14f8339d83: Layer already exists
+365ccd918307: Layer already exists
+1bba629c69e9: Layer already exists
+139c1270acf1: Layer already exists
+4693057ce236: Layer already exists
+ab42b13d9b6b: Pushed
+3ab7853c31b3: Pushed
+305d05fb2cf7: Pushed
+8cebb17ca5c0: Pushed
+17: digest: sha256:907ad6421ea9c47f4115b503c8765f1db8eb6404386e60816664310763d67541 size: 2198
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Checkout K8S manifest Git)
+[Pipeline] git
+The recommended git tool is: NONE
+using credential git_key
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/Argo Project CI pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Praj0496/Argo_project_K8S_manifest.git # timeout=10
+Fetching upstream changes from https://github.com/Praj0496/Argo_project_K8S_manifest.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_ASKPASS to set credentials git_key
+ > git fetch --tags --force --progress -- https://github.com/Praj0496/Argo_project_K8S_manifest.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 50b1001ee33b097f22593dbbc5c3af78a345f88e (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 50b1001ee33b097f22593dbbc5c3af78a345f88e # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D main # timeout=10
+ > git checkout -b main 50b1001ee33b097f22593dbbc5c3af78a345f88e # timeout=10
+Commit message: "Updated the deployment yaml file | Jenkins Pipeline"
+ > git rev-list --no-walk 2e6a8c9d2ca98813af353add5c68081c52c149c0 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Update K8S manifest & push to Repo)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $git_keyPassword
+[Pipeline] {
+[Pipeline] sh
++ cat Deployment.yaml
+apiVersion: apps/v10
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image: praj0404/argo_cd:16
+        ports:
+        - containerPort: 80+ sed -i s|praj0404/argo_cd:\(.*\)|praj0404/argo_cd:17| Deployment.yaml
++ cat Deployment.yaml
+apiVersion: apps/v10
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image: praj0404/argo_cd:17
+        ports:
+        - containerPort: 80+ git add Deployment.yaml
++ git commit -m Updated the deployment yaml file | Jenkins Pipeline
+[main dcd07160] Updated the deployment yaml file | Jenkins Pipeline
+ Committer: Jenkins <jenkins@web-server.us-central1-c.c.lucky-processor-426904-c0.internal>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
++ git remote -v
+origin	https://github.com/Praj0496/Argo_project_K8S_manifest.git (fetch)
+origin	https://github.com/Praj0496/Argo_project_K8S_manifest.git (push)
++ git push https://Praj0496:****@github.com/Praj0496/Argo_project_K8S_manifest.git HEAD:main
+To https://github.com/Praj0496/Argo_project_K8S_manifest.git
+   50b1001e..dcd07160  HEAD -> main
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
