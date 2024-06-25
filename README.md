@@ -1,4 +1,7 @@
-## ## Setting Up a Complete CI/CD Pipeline with Jenkins, Argo CD, Docker, and Kubernetes
+# Setting Up a Complete CI/CD Pipeline with Jenkins, Argo CD, Docker, and Kubernetes
+#
+![alt text](nodeCD.drawio.png)
+
 
 ### Overview
 
@@ -64,18 +67,24 @@ To create a robust CI/CD pipeline using Jenkins and Argo CD, demonstrating an en
 
 This project highlights the ease and efficiency of setting up a CI/CD pipeline using Jenkins and Argo CD. It showcases the benefits of a declarative approach, the power of CI/CD, and the seamless integration between Jenkins, Docker, and Kubernetes. This project provides a clear and practical example of modern CI/CD practices.
 
-**GitHub Repository:** [CI-CD_with_ArgoCD](https://github.com/Praj0496/CI-CD_with_ArgoCD.git)
+**GitHub Repositories:** 
+[CI-CD_with_ArgoCD](https://github.com/Praj0496/CI-CD_with_ArgoCD.git)
 
-                       [Argo_project_K8S_manifest](https://github.com/Praj0496/Argo_project_K8S_manifest.git)
+[Argo_project_K8S_manifest](https://github.com/Praj0496/Argo_project_K8S_manifest.git)
 
 Demo video: https://drive.google.com/file/d/1gq-toG7rA5IHTU2nJrLPSY2gD7DzNkTw/view?usp=sharing
 
 
 **Resources:**
-Jenkins Install: https://pkg.jenkins.io/debian-stable/
+
+Jenkins Install: https://pkg.jenkins.io/debian-stable/ 
+
 Docker Install: https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+
 Kubeadm Install: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+
 Argo CD setup: https://argo-cd.readthedocs.io/en/stable/getting_started/
+
 DockerHub: https://hub.docker.com/
 
 Grant Jenkins user and Ubuntu user permission to docker deamon.
