@@ -5,7 +5,7 @@
 
 ### Overview
 
-In this project, I demonstrate how to set up a complete Continuous Integration and Continuous Deployment (CI/CD) pipeline using Jenkins for continuous integration and Argo CD for continuous delivery. This pipeline is designed to efficiently automate the deployment process of a simple JavaScript-based application, leveraging Docker for containerization and Kubernetes for orchestration.
+In this project, I demonstrate how to set up a complete Continuous Integration and Continuous Deployment (CI/CD) pipeline using Jenkins for continuous integration and Argo CD for continuous delivery. This pipeline is designed to efficiently automate the deployment process of a simple JavaScript-based application, leveraging Kubernetes for containerization.
 
 ### Project Details
 
